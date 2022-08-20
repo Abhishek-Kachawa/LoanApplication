@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html> 
+<head></head>
+    <input type="hidden" id="name"/>
+    <input type="hidden" id="Email"/>
+    <input type="hidden" id="OTP"/>
+    <script src="jquery.js"></script> 
+    
+
+    <h1> Dear <First name >,
+        Thank you for your inquiry. A 4 digit verification number has been sent to your email: <valid email from previous page>,
+        please enter it in the following box and submit for confirmation: </h1>
+   
+
+<body>
+    </body>
+    <script type="text/javascript">
+    window.onload = function () {
+      //  debugger;
+    var url = document.location.href,
+    
+    params = url.split('?')[1].split('&'),
+            data = {}, tmp;
+        for (var i = 0, l = params.length; i < 3; i++) {
+         tmp = params[i].split('=');
+        data[tmp[0]] = tmp[1];
+        data[tmp[2]]=tmp[3];
+        }
+        document.getElementById('name').innerHTML = data.name;
+        document.getElementById('OTP').innerHTML = data.OTP;
+   } 
+</script>
+    </html>

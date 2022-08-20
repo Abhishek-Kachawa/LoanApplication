@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" <title> Loan Application Using JavaScript
+  </title>
+  <link rel="stylesheet" type="text/css" href="project.css">
+</head>
+
+<body onload="DrawCaptcha();">
+  <div class="container">
+    <form method="post" name="form_name" id="form_id" class="form_class" >
+      <h1>Apply For Loan</h1>
+      <input type="text" id="name" placeholder="Full Name" required name="[A-Z,a-z]*">
+      
+      <input type="email" id="email" placeholder="Email id" required>
+      <input type="Pan" id="Pan" placeholder="Pan id" required>
+      <input type="Loan" id="Loan" placeholder="Loan Amount" required maxlength="9"
+        onkeypress="return onlyNumberKey(event)">
+      Enter Captcha:
+      <div id="content">
+        <div id="left">
+          <input type="text" id="txtCaptcha"
+            style="background-image:url(images/cap.JPG); text-align:left; border:none; font-weight: bold; font-family:Modern" />
+        </div>
+        <div id="left">
+          <input type="text" oninput="check(this)" required id="txtInput" />
+        </div>
+        <div id="right">
+          <input type="button" id="btnrefresh" value="Refresh" onclick="DrawCaptcha();" />
+        </div>
+      </div>
+      <button type="submit" value="Submit" onclick="Onsubmit();" >Submit</button>
+      
+    </form>
+  </div></body> 
+  <script type="text/javascript">
+
+    function DrawCaptcha() {
+      var a = Math.ceil(Math.random() * 6) + '';
+      var b = Math.ceil(Math.random() * 6) + '';
+      var c = Math.ceil(Math.random() * 6) + '';
+
+      var code = a + "+" + b + "+" + c;
+      document.getElementById("txtCaptcha").value = code
+    }
+    function check(input) {
+      var cap = add(document.getElementById('txtCaptcha').value);
+      if (input.value != cap) {
+        input.setCustomValidity("Error in code Please Check!");
+      } else {
+        // input is fine -- reset the error message
+        input.setCustomValidity('');
+      }
+    }
+  
+
+    function Onsubmit() {
+
+    //debugger;
+    var Otp = generateOTP();
+    var b = document.getElementById('name').value;
+        
+   //  location.href=url;
+   //window.Response.redi
+   //location.replace("Sample.html?name="+b+"?OTP="+Otp);
+      //location.reload(false);
+    }
+
+    function generateOTP() {
+
+      // Declare a digits variable 
+      // which stores all digits
+      var digits = '0123456789';
+      let OTP = '';
+      for (let i = 0; i < 4; i++) {
+        OTP += digits[Math.floor(Math.random() * 10)];
+      }
+      return OTP;
+    }
+    function onlyNumberKey(evt) {
+
+// Only ASCII character in that range allowed
+var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+  return false;
+return true;
+}
+
+function allLetter(inputtxt) {
+var letters = /^[A-Za-z]+$/;
+if (inputtxt.value.match(letters)) {
+  return true;
+}
+else {
+  alert("message");
+  return false;
+}
+}
+</script>
+</html>
